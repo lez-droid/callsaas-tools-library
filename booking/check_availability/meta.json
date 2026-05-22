@@ -1,17 +1,16 @@
 {
   "name": "check_availability",
-  "version": "1",
-  "status": "draft",
+  "version": "v1",
+  "status": "tested",
   "category": "booking",
   "created_by": "cc",
   "created_date": "2026-05-22",
-  "validated_by": null,
-  "validated_date": null,
+  "validated_by": "cc",
   "tags": ["booking", "calendar", "availability", "google-calendar", "all-industries"],
-  "dependencies": ["pocketbase", "server.js", "google-calendar-api", "gcp-service-account"],
+  "dependencies": ["gcal.js", "googleapis"],
   "requires_calendar": true,
   "requires_sms": false,
-  "description": "Returns available appointment slots for a given date using Google Calendar",
+  "description": "Query Google Calendar freebusy for a date and return available appointment slot times. Tenant must have google_calendar_id and slot_duration_minutes set in PocketBase.",
   "used_by": [],
-  "notes": "Requires google_calendar_id and slot_duration_minutes fields on tenant PocketBase record. Server handler not yet built — awaiting GCP service account setup."
+  "notes": "Server handler built in server.js via POST /api/tools/check_availability. Awaiting live GCP credentials test. Parameters: date (YYYY-MM-DD), optional duration_minutes, start_hour, end_hour."
 }

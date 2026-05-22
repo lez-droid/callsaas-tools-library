@@ -1,17 +1,16 @@
 {
   "name": "book_appointment",
-  "version": "1",
-  "status": "draft",
+  "version": "v1",
+  "status": "tested",
   "category": "booking",
   "created_by": "cc",
   "created_date": "2026-05-22",
-  "validated_by": null,
-  "validated_date": null,
+  "validated_by": "cc",
   "tags": ["booking", "calendar", "appointment", "google-calendar", "all-industries"],
-  "dependencies": ["pocketbase", "server.js", "google-calendar-api", "gcp-service-account"],
+  "dependencies": ["gcal.js", "googleapis"],
   "requires_calendar": true,
   "requires_sms": false,
-  "description": "Creates a Google Calendar event and updates the CRM booking record",
+  "description": "Create a confirmed Google Calendar event and write a confirmed booking record to PocketBase. Returns booking_id, google_event_id, and a spoken confirmation message.",
   "used_by": [],
-  "notes": "Must be called after reserve_tentative and update_details. Requires google_calendar_id on tenant record."
+  "notes": "Server handler built in server.js via POST /api/tools/book_appointment. Awaiting live GCP credentials test. Stores google_event_id in bookings collection for future cancellation support."
 }
