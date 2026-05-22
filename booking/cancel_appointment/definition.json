@@ -1,0 +1,43 @@
+{
+  "name": "cancel_appointment",
+  "description": "Cancels an existing appointment by removing it from Google Calendar and updating the CRM record. Call this when a caller wants to cancel their booking.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "tenant_id": {
+        "type": "string",
+        "description": "The client tenant identifier.",
+        "const": "{{TENANT_ID}}"
+      },
+      "booking_reference": {
+        "type": "string",
+        "description": "The booking reference number (e.g. 'NDF-240527-001'). Use this if the caller provides it."
+      },
+      "caller_name": {
+        "type": "string",
+        "description": "Caller's name to help locate the booking if no reference provided."
+      },
+      "appointment_date": {
+        "type": "string",
+        "description": "Date of the appointment to cancel (YYYY-MM-DD format). Use if no booking reference."
+      },
+      "cancellation_reason": {
+        "type": "string",
+        "description": "Reason for cancellation (optional)."
+      }
+    },
+    "required": ["tenant_id"],
+    "oneOf": [
+      {"required": ["booking_reference"]},
+      {"required": ["caller_name", "appointment_date"]}
+    ]
+  },
+  "webhook": {
+    "url": "{{WEBHOOK_URL}}/api/tools/cancel_appointment",
+    "method": "POST",
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Webhook-Secret": "{{WEBHOOK_SECRET}}"
+    }
+  }
+}
