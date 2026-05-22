@@ -1,0 +1,25 @@
+{
+  "type": "function",
+  "function": {
+    "name": "create_client_calendar",
+    "description": "Creates a new Google Calendar for a client, owned by the service account. Returns the calendar ID to store in the tenant record.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "business_name": {
+          "type": "string",
+          "description": "The client's business name for the calendar title"
+        },
+        "tenant_id": {
+          "type": "string", 
+          "description": "The tenant slug/ID for logging and reference"
+        },
+        "share_with_email": {
+          "type": "string",
+          "description": "Optional email to share the calendar with (e.g. lez@callsaas.io or client's email)"
+        }
+      },
+      "required": ["business_name", "tenant_id"]
+    }
+  }
+}
