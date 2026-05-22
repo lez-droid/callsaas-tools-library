@@ -1,0 +1,17 @@
+{
+  "name": "finalize_status",
+  "version": "1",
+  "status": "library-grade",
+  "category": "core",
+  "created_by": "cc",
+  "created_date": "2026-05-22",
+  "validated_by": "cc",
+  "validated_date": "2026-05-22",
+  "tags": ["core", "booking", "crm", "status", "all-industries"],
+  "dependencies": ["pocketbase", "server.js"],
+  "requires_calendar": false,
+  "requires_sms": false,
+  "description": "Sets the final booking status: confirmed, callback_required, or cancelled",
+  "used_by": [],
+  "notes": "Always the last tool called in a booking flow."
+}

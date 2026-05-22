@@ -1,0 +1,47 @@
+{
+  "name": "book_appointment",
+  "description": "Creates a confirmed appointment on the client's Google Calendar and records it in the CRM. Call this after the caller has selected a specific date and time from the available slots.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "tenant_id": {
+        "type": "string",
+        "description": "The client tenant identifier.",
+        "const": "{{TENANT_ID}}"
+      },
+      "record_id": {
+        "type": "string",
+        "description": "The CRM record_id from reserve_tentative."
+      },
+      "date": {
+        "type": "string",
+        "description": "Confirmed appointment date in ISO format YYYY-MM-DD."
+      },
+      "time": {
+        "type": "string",
+        "description": "Confirmed appointment time (e.g. '10:00am')."
+      },
+      "caller_name": {
+        "type": "string",
+        "description": "Caller's full name for the calendar event title."
+      },
+      "service_type": {
+        "type": "string",
+        "description": "Service type for the calendar event description."
+      },
+      "notes": {
+        "type": "string",
+        "description": "Any notes to include in the calendar event."
+      }
+    },
+    "required": ["tenant_id", "record_id", "date", "time", "caller_name", "service_type"]
+  },
+  "webhook": {
+    "url": "{{WEBHOOK_URL}}/api/tools/book_appointment",
+    "method": "POST",
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Webhook-Secret": "{{WEBHOOK_SECRET}}"
+    }
+  }
+}

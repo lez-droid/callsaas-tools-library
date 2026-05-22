@@ -1,0 +1,44 @@
+{
+  "name": "request_callback",
+  "description": "Logs a callback request when the caller cannot be helped immediately and staff need to call them back. Use when the caller prefers a callback, when outside trading hours, or when the query cannot be resolved by the agent.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "tenant_id": {
+        "type": "string",
+        "description": "The client tenant identifier.",
+        "const": "{{TENANT_ID}}"
+      },
+      "caller_name": {
+        "type": "string",
+        "description": "The caller's full name."
+      },
+      "caller_phone": {
+        "type": "string",
+        "description": "The caller's phone number."
+      },
+      "reason": {
+        "type": "string",
+        "description": "Why the callback is needed — use the caller's own words."
+      },
+      "preferred_callback_time": {
+        "type": "string",
+        "description": "When the caller prefers to be called back (e.g. 'tomorrow morning', 'after 3pm'). Leave empty if not specified."
+      },
+      "urgency": {
+        "type": "string",
+        "enum": ["normal", "urgent"],
+        "description": "Use 'urgent' only if the caller explicitly says it is urgent or an emergency."
+      }
+    },
+    "required": ["tenant_id", "caller_name", "caller_phone", "reason"]
+  },
+  "webhook": {
+    "url": "{{WEBHOOK_URL}}/api/tools/request_callback",
+    "method": "POST",
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Webhook-Secret": "{{WEBHOOK_SECRET}}"
+    }
+  }
+}

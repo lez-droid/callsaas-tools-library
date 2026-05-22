@@ -1,0 +1,40 @@
+{
+  "name": "finalize_status",
+  "description": "Called at the end of a booking conversation to set the final status of the booking. Use 'confirmed' when the booking is accepted, 'callback_required' when staff need to call back to confirm, or 'cancelled' if the caller changed their mind.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "tenant_id": {
+        "type": "string",
+        "description": "The client tenant identifier.",
+        "const": "{{TENANT_ID}}"
+      },
+      "record_id": {
+        "type": "string",
+        "description": "The record_id returned by reserve_tentative."
+      },
+      "status": {
+        "type": "string",
+        "enum": ["confirmed", "callback_required", "cancelled"],
+        "description": "The final booking status. Use 'confirmed' if booking accepted, 'callback_required' if staff need to call back, 'cancelled' if caller cancelled."
+      },
+      "confirmed_date": {
+        "type": "string",
+        "description": "The confirmed appointment date and time if status is 'confirmed' (e.g. 'Tuesday 27 May at 10am')."
+      },
+      "callback_reason": {
+        "type": "string",
+        "description": "Reason a callback is needed if status is 'callback_required' (e.g. 'check technician availability')."
+      }
+    },
+    "required": ["tenant_id", "record_id", "status"]
+  },
+  "webhook": {
+    "url": "{{WEBHOOK_URL}}/api/finalize-status",
+    "method": "POST",
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Webhook-Secret": "{{WEBHOOK_SECRET}}"
+    }
+  }
+}

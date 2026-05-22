@@ -1,0 +1,36 @@
+{
+  "name": "escalate_to_staff",
+  "description": "Transfers the caller to a live staff member or triggers an on-call notification. Use when the caller requests to speak to someone, when the query is outside the agent's scope, or when configured escalation triggers are met.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "tenant_id": {
+        "type": "string",
+        "description": "The client tenant identifier.",
+        "const": "{{TENANT_ID}}"
+      },
+      "caller_name": {
+        "type": "string",
+        "description": "The caller's name if known."
+      },
+      "reason": {
+        "type": "string",
+        "description": "Why escalation is being triggered."
+      },
+      "escalation_type": {
+        "type": "string",
+        "enum": ["live_transfer", "on_call_notification", "message_to_staff"],
+        "description": "How to escalate — configured per client."
+      }
+    },
+    "required": ["tenant_id", "reason", "escalation_type"]
+  },
+  "webhook": {
+    "url": "{{WEBHOOK_URL}}/api/tools/escalate_to_staff",
+    "method": "POST",
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Webhook-Secret": "{{WEBHOOK_SECRET}}"
+    }
+  }
+}

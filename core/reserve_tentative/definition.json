@@ -1,0 +1,39 @@
+{
+  "name": "reserve_tentative",
+  "description": "Called when a caller expresses intent to book an appointment. Captures the initial booking details and creates a tentative record in the CRM. Always call this as soon as booking intent is confirmed — before collecting full details.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "tenant_id": {
+        "type": "string",
+        "description": "The client tenant identifier. Always set to the fixed value for this agent.",
+        "const": "{{TENANT_ID}}"
+      },
+      "preferred_date": {
+        "type": "string",
+        "description": "The caller's preferred date for the appointment (e.g. 'next Tuesday', '27th of May', 'tomorrow'). Use the caller's exact words."
+      },
+      "preferred_time": {
+        "type": "string",
+        "description": "The caller's preferred time (e.g. 'morning', '10am', 'after 2pm'). Use the caller's exact words."
+      },
+      "service_type": {
+        "type": "string",
+        "description": "The type of service or appointment requested (e.g. 'logbook service', 'check-up', 'initial consultation')"
+      },
+      "caller_name": {
+        "type": "string",
+        "description": "The caller's name if already provided at this point. Leave empty if not yet given."
+      }
+    },
+    "required": ["tenant_id", "preferred_date", "service_type"]
+  },
+  "webhook": {
+    "url": "{{WEBHOOK_URL}}/api/reserve-tentative",
+    "method": "POST",
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Webhook-Secret": "{{WEBHOOK_SECRET}}"
+    }
+  }
+}

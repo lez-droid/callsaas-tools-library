@@ -1,0 +1,7 @@
+{
+  "tenant_id": "test-client",
+  "preferred_date": "next Tuesday",
+  "preferred_time": "10am",
+  "service_type": "logbook service",
+  "caller_name": "John Smith"
+}

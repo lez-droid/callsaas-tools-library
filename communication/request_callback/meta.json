@@ -1,0 +1,17 @@
+{
+  "name": "request_callback",
+  "version": "1",
+  "status": "draft",
+  "category": "communication",
+  "created_by": "cc",
+  "created_date": "2026-05-22",
+  "validated_by": null,
+  "validated_date": null,
+  "tags": ["communication", "callback", "crm", "after-hours", "all-industries"],
+  "dependencies": ["pocketbase", "server.js"],
+  "requires_calendar": false,
+  "requires_sms": false,
+  "description": "Logs a staff callback request with caller details and urgency level",
+  "used_by": [],
+  "notes": "Standalone tool — does not require reserve_tentative first."
+}

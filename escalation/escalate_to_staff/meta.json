@@ -1,0 +1,17 @@
+{
+  "name": "escalate_to_staff",
+  "version": "1",
+  "status": "draft",
+  "category": "escalation",
+  "created_by": "cc",
+  "created_date": "2026-05-22",
+  "validated_by": null,
+  "validated_date": null,
+  "tags": ["escalation", "transfer", "staff", "all-industries"],
+  "dependencies": ["pocketbase", "server.js", "twilio"],
+  "requires_calendar": false,
+  "requires_sms": false,
+  "description": "Transfers caller to staff or sends on-call notification",
+  "used_by": [],
+  "notes": "live_transfer requires Twilio. on_call_notification requires staff phone number on tenant record."
+}

@@ -1,0 +1,31 @@
+{
+  "name": "check_availability",
+  "description": "Checks available appointment slots for a given date. Returns a list of available times based on the client's trading hours, slot duration, and existing calendar bookings. Call this when the caller asks what times are available.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "tenant_id": {
+        "type": "string",
+        "description": "The client tenant identifier.",
+        "const": "{{TENANT_ID}}"
+      },
+      "date": {
+        "type": "string",
+        "description": "The date to check availability for. Use ISO format YYYY-MM-DD or natural language like 'next Tuesday'."
+      },
+      "service_type": {
+        "type": "string",
+        "description": "The type of service — used to determine slot duration."
+      }
+    },
+    "required": ["tenant_id", "date"]
+  },
+  "webhook": {
+    "url": "{{WEBHOOK_URL}}/api/tools/check_availability",
+    "method": "POST",
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Webhook-Secret": "{{WEBHOOK_SECRET}}"
+    }
+  }
+}

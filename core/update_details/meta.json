@@ -1,0 +1,17 @@
+{
+  "name": "update_details",
+  "version": "1",
+  "status": "library-grade",
+  "category": "core",
+  "created_by": "cc",
+  "created_date": "2026-05-22",
+  "validated_by": "cc",
+  "validated_date": "2026-05-22",
+  "tags": ["core", "booking", "crm", "caller-details", "all-industries"],
+  "dependencies": ["pocketbase", "server.js"],
+  "requires_calendar": false,
+  "requires_sms": false,
+  "description": "Updates a tentative booking record with caller contact details",
+  "used_by": [],
+  "notes": "Always called after reserve_tentative. Requires record_id from that call."
+}

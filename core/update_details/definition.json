@@ -1,0 +1,47 @@
+{
+  "name": "update_details",
+  "description": "Called after reserve_tentative to capture the caller's full contact details. Updates the existing tentative record with name, phone number, and any additional notes. Call this once you have the caller's name and phone number.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "tenant_id": {
+        "type": "string",
+        "description": "The client tenant identifier.",
+        "const": "{{TENANT_ID}}"
+      },
+      "record_id": {
+        "type": "string",
+        "description": "The record_id returned by reserve_tentative."
+      },
+      "caller_name": {
+        "type": "string",
+        "description": "The caller's full name."
+      },
+      "caller_phone": {
+        "type": "string",
+        "description": "The caller's phone number including area code."
+      },
+      "caller_email": {
+        "type": "string",
+        "description": "The caller's email address if provided. Leave empty if not given."
+      },
+      "vehicle_rego": {
+        "type": "string",
+        "description": "Vehicle registration number if applicable (automotive clients only). Leave empty otherwise."
+      },
+      "notes": {
+        "type": "string",
+        "description": "Any additional notes or special requirements mentioned by the caller."
+      }
+    },
+    "required": ["tenant_id", "record_id", "caller_name", "caller_phone"]
+  },
+  "webhook": {
+    "url": "{{WEBHOOK_URL}}/api/update-details",
+    "method": "POST",
+    "headers": {
+      "Content-Type": "application/json",
+      "X-Webhook-Secret": "{{WEBHOOK_SECRET}}"
+    }
+  }
+}

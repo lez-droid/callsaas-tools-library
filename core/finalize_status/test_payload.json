@@ -1,0 +1,7 @@
+{
+  "tenant_id": "test-client",
+  "record_id": "{{record_id_from_reserve_tentative}}",
+  "status": "confirmed",
+  "confirmed_date": "Tuesday 27 May at 10am",
+  "callback_reason": ""
+}

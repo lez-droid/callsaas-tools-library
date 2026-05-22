@@ -1,0 +1,17 @@
+{
+  "name": "reserve_tentative",
+  "version": "1",
+  "status": "library-grade",
+  "category": "core",
+  "created_by": "cc",
+  "created_date": "2026-05-22",
+  "validated_by": "cc",
+  "validated_date": "2026-05-22",
+  "tags": ["core", "booking", "crm", "lead-capture", "all-industries"],
+  "dependencies": ["pocketbase", "server.js"],
+  "requires_calendar": false,
+  "requires_sms": false,
+  "description": "Captures initial booking intent and creates a tentative CRM lead record",
+  "used_by": [],
+  "notes": "Always the first tool called in a booking flow. Must be called before update_details."
+}
