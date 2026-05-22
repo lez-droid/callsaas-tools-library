@@ -1,0 +1,22 @@
+{
+  "name": "create_client_calendar",
+  "category": "booking",
+  "status": "library-grade",
+  "version": "v1",
+  "description": "Creates a new Google Calendar owned by the service account for a client. Returns calendar ID to store in tenant record.",
+  "tags": [
+    "booking",
+    "calendar",
+    "google-calendar",
+    "onboarding",
+    "all-industries"
+  ],
+  "dependencies": [
+    "googleapis",
+    "GOOGLE_SERVICE_ACCOUNT_JSON"
+  ],
+  "tested_with": [
+    "callsaas-production GCP project",
+    "service account: callsaas-voice-agent@callsaas-production.iam.gserviceaccount.com"
+  ]
+}
