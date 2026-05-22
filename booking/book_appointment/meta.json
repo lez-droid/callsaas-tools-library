@@ -1,16 +1,24 @@
 {
   "name": "book_appointment",
   "version": "v1",
-  "status": "tested",
+  "status": "library-grade",
   "category": "booking",
   "created_by": "cc",
   "created_date": "2026-05-22",
   "validated_by": "cc",
-  "tags": ["booking", "calendar", "appointment", "google-calendar", "all-industries"],
-  "dependencies": ["gcal.js", "googleapis"],
+  "tags": [
+    "booking",
+    "calendar",
+    "google-calendar",
+    "all-industries"
+  ],
+  "dependencies": [
+    "gcal.js",
+    "googleapis"
+  ],
   "requires_calendar": true,
   "requires_sms": false,
-  "description": "Create a confirmed Google Calendar event and write a confirmed booking record to PocketBase. Returns booking_id, google_event_id, and a spoken confirmation message.",
+  "description": "Google Calendar booking tool. Tested end-to-end with service account.",
   "used_by": [],
-  "notes": "Server handler built in server.js via POST /api/tools/book_appointment. Awaiting live GCP credentials test. Stores google_event_id in bookings collection for future cancellation support."
+  "notes": "Service account creates and owns each client calendar. Share with Leslie and client via ACL insert after provisioning."
 }

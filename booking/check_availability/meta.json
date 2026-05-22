@@ -1,16 +1,24 @@
 {
   "name": "check_availability",
   "version": "v1",
-  "status": "tested",
+  "status": "library-grade",
   "category": "booking",
   "created_by": "cc",
   "created_date": "2026-05-22",
   "validated_by": "cc",
-  "tags": ["booking", "calendar", "availability", "google-calendar", "all-industries"],
-  "dependencies": ["gcal.js", "googleapis"],
+  "tags": [
+    "booking",
+    "calendar",
+    "google-calendar",
+    "all-industries"
+  ],
+  "dependencies": [
+    "gcal.js",
+    "googleapis"
+  ],
   "requires_calendar": true,
   "requires_sms": false,
-  "description": "Query Google Calendar freebusy for a date and return available appointment slot times. Tenant must have google_calendar_id and slot_duration_minutes set in PocketBase.",
+  "description": "Google Calendar booking tool. Tested end-to-end with service account.",
   "used_by": [],
-  "notes": "Server handler built in server.js via POST /api/tools/check_availability. Awaiting live GCP credentials test. Parameters: date (YYYY-MM-DD), optional duration_minutes, start_hour, end_hour."
+  "notes": "Service account creates and owns each client calendar. Share with Leslie and client via ACL insert after provisioning."
 }
