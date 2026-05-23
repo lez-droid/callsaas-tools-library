@@ -3,6 +3,14 @@
   "name": "service_estimate",
   "description": "Get a price estimate for a vehicle service. Call this when the customer asks about pricing. Always present the result as a range and add that prices may vary depending on the vehicle's condition. Never commit to an exact price over the phone.",
   "response_timeout_secs": 6,
+  "execution_mode": "immediate",
+  "disable_interruptions": false,
+  "pre_tool_speech": "auto",
+  "tool_call_sound": null,
+  "tool_call_sound_behavior": "auto",
+  "tool_error_handling_mode": "auto",
+  "dynamic_variables": { "dynamic_variable_placeholders": {} },
+  "assignments": [],
   "api_schema": {
     "url": "https://crm.callsaas.io/api/tools/service-estimate",
     "method": "POST",
@@ -13,27 +21,35 @@
     },
     "request_body_schema": {
       "type": "object",
+      "description": "Service price estimate request",
       "required": ["service_type", "tenant_id"],
       "properties": {
         "service_type": {
           "type": "string",
           "description": "The type of service the customer is asking about. Use the customer's exact words, e.g. 'logbook service', 'brake pads', 'roadworthy certificate', 'RWC', 'pink slip', 'oil change', 'transmission flush', 'tyre rotation'.",
           "dynamic_variable": "",
-          "constant_value": ""
+          "constant_value": "",
+          "is_system_provided": false
         },
         "vehicle_class": {
           "type": "string",
           "description": "Vehicle class if known from rego lookup or customer statement: passenger, suv, ute, van, truck, motorcycle. Leave blank if unknown.",
           "dynamic_variable": "",
-          "constant_value": ""
+          "constant_value": "",
+          "is_system_provided": false
         },
         "tenant_id": {
           "type": "string",
           "description": "The workshop tenant identifier",
           "dynamic_variable": "",
-          "constant_value": "REPLACE_WITH_TENANT_ID"
+          "constant_value": "REPLACE_WITH_TENANT_ID",
+          "is_system_provided": false
         }
       }
-    }
+    },
+    "path_params_schema": {},
+    "query_params_schema": null,
+    "response_body_schema": null,
+    "content_type": "application/json"
   }
 }

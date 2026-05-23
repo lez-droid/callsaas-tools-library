@@ -3,37 +3,53 @@
   "name": "rego_lookup",
   "description": "Look up a vehicle by its Australian registration plate number. Call this when the customer provides their rego plate. Speak the result back to confirm: 'So that's a 2019 silver Toyota Camry — is that right?' Do not read out the VIN or any compliance data.",
   "response_timeout_secs": 10,
+  "execution_mode": "immediate",
+  "disable_interruptions": true,
+  "pre_tool_speech": "auto",
+  "tool_call_sound": null,
+  "tool_call_sound_behavior": "auto",
+  "tool_error_handling_mode": "auto",
+  "dynamic_variables": { "dynamic_variable_placeholders": {} },
+  "assignments": [],
   "api_schema": {
     "url": "https://crm.callsaas.io/api/tools/rego-lookup",
     "method": "POST",
+    "content_type": "application/json",
     "request_headers": {
       "X-Webhook-Secret": {
         "constant_value": "REPLACE_WITH_TENANT_WEBHOOK_SECRET"
       }
     },
+    "path_params_schema": {},
+    "query_params_schema": null,
     "request_body_schema": {
       "type": "object",
+      "description": "Rego plate lookup request",
       "required": ["plate"],
       "properties": {
         "plate": {
           "type": "string",
           "description": "Vehicle registration plate number, e.g. ABC123 or 1ABC234. Letters and numbers only, no spaces or dashes.",
           "dynamic_variable": "",
-          "constant_value": ""
+          "constant_value": "",
+          "is_system_provided": false
         },
         "state": {
           "type": "string",
           "description": "Australian state or territory abbreviation: NSW, VIC, QLD, SA, WA, TAS, NT, ACT. Ask the caller if unsure.",
           "dynamic_variable": "",
-          "constant_value": ""
+          "constant_value": "",
+          "is_system_provided": false
         },
         "tenant_id": {
           "type": "string",
           "description": "The workshop tenant identifier",
           "dynamic_variable": "",
-          "constant_value": "REPLACE_WITH_TENANT_ID"
+          "constant_value": "REPLACE_WITH_TENANT_ID",
+          "is_system_provided": false
         }
       }
-    }
+    },
+    "response_body_schema": null
   }
 }

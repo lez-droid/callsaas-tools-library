@@ -3,6 +3,14 @@
   "name": "emergency_escalation",
   "description": "Send an urgent alert to the workshop owner when a caller has a safety-critical vehicle issue. Call this immediately when the caller mentions: brakes failed, steering gone, smoke, fire, fuel leak, not safe to drive, stuck on the road, or needs a tow. After calling this, tell the caller: 'I've flagged this as urgent and the team will call you back as soon as possible. If you're in immediate danger, please call triple zero.' Do not try to book a regular appointment for these situations.",
   "response_timeout_secs": 10,
+  "execution_mode": "async",
+  "disable_interruptions": false,
+  "pre_tool_speech": "auto",
+  "tool_call_sound": null,
+  "tool_call_sound_behavior": "auto",
+  "tool_error_handling_mode": "auto",
+  "dynamic_variables": { "dynamic_variable_placeholders": {} },
+  "assignments": [],
   "api_schema": {
     "url": "https://crm.callsaas.io/api/tools/emergency-escalation",
     "method": "POST",
@@ -49,9 +57,14 @@
           "type": "string",
           "description": "The workshop tenant identifier",
           "dynamic_variable": "",
-          "constant_value": "REPLACE_WITH_TENANT_ID"
+          "constant_value": "REPLACE_WITH_TENANT_ID",
+          "is_system_provided": false
         }
       }
-    }
+    },
+    "path_params_schema": {},
+    "query_params_schema": null,
+    "response_body_schema": null,
+    "content_type": "application/json"
   }
 }

@@ -3,6 +3,14 @@
   "name": "get_invoice_status",
   "description": "Look up outstanding invoices for a customer. Call this when a customer asks about a bill, wants to know what they owe, or calls to pay for completed work. Summarise verbally — do not read out every line item. Say something like: 'Your invoice is for $340 for the logbook service on the 14th — still outstanding.' Then offer to send a payment link.",
   "response_timeout_secs": 12,
+  "execution_mode": "immediate",
+  "disable_interruptions": true,
+  "pre_tool_speech": "auto",
+  "tool_call_sound": null,
+  "tool_call_sound_behavior": "auto",
+  "tool_error_handling_mode": "auto",
+  "dynamic_variables": { "dynamic_variable_placeholders": {} },
+  "assignments": [],
   "api_schema": {
     "url": "https://crm.callsaas.io/api/tools/invoice-status",
     "method": "POST",
@@ -37,9 +45,14 @@
           "type": "string",
           "description": "The workshop tenant identifier",
           "dynamic_variable": "",
-          "constant_value": "REPLACE_WITH_TENANT_ID"
+          "constant_value": "REPLACE_WITH_TENANT_ID",
+          "is_system_provided": false
         }
       }
-    }
+    },
+    "path_params_schema": {},
+    "query_params_schema": null,
+    "response_body_schema": null,
+    "content_type": "application/json"
   }
 }

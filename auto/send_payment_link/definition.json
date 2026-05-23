@@ -3,6 +3,14 @@
   "name": "send_payment_link",
   "description": "Generate a payment link and send it to the customer via SMS. Use this for collecting a booking deposit or for customers calling to pay an outstanding balance. Always confirm the amount with the customer before calling this. Say 'I've just sent a payment link to your mobile — it'll come through in a moment.'",
   "response_timeout_secs": 15,
+  "execution_mode": "async",
+  "disable_interruptions": false,
+  "pre_tool_speech": "auto",
+  "tool_call_sound": null,
+  "tool_call_sound_behavior": "auto",
+  "tool_error_handling_mode": "auto",
+  "dynamic_variables": { "dynamic_variable_placeholders": {} },
+  "assignments": [],
   "api_schema": {
     "url": "https://crm.callsaas.io/api/tools/send-payment-link",
     "method": "POST",
@@ -49,9 +57,14 @@
           "type": "string",
           "description": "The workshop tenant identifier",
           "dynamic_variable": "",
-          "constant_value": "REPLACE_WITH_TENANT_ID"
+          "constant_value": "REPLACE_WITH_TENANT_ID",
+          "is_system_provided": false
         }
       }
-    }
+    },
+    "path_params_schema": {},
+    "query_params_schema": null,
+    "response_body_schema": null,
+    "content_type": "application/json"
   }
 }
