@@ -1,0 +1,15 @@
+{
+  "name": "live_call_transfer",
+  "display_name": "Live Call Transfer",
+  "status": "draft",
+  "niche": "auto",
+  "description": "Transfers the live phone call to a human — the workshop owner, on-call technician, or emergency line. This is an ElevenLabs System Tool (built-in telephony capability), not a webhook. No server endpoint required. Use for safety emergencies or complex technical situations the agent cannot handle.",
+  "requires": [
+    "ElevenLabs telephony integration (SIP trunk or Twilio voice — not just ConvAI widget)",
+    "Tenant config: on_call_phone (the number to transfer to)",
+    "ElevenLabs System Tool type: built-in 'end_call' or 'transfer_to_number' capability"
+  ],
+  "el_tool_type": "system",
+  "el_call_timing": "Invoke for: safety emergencies where caller needs live human, complex mechanical questions beyond the agent, caller explicitly requests to speak to someone, or after emergency_escalation SMS is sent and caller is still on the line",
+  "notes": "This requires ElevenLabs telephony integration (the agent must be answering calls via EL's phone system, not just the ConvAI web widget). For demo agents on the web widget, this tool is not available — use emergency_escalation (SMS) instead. The distinction: emergency_escalation notifies the owner by SMS while the agent continues talking; live_call_transfer actually hands the live call trunk to a human. Both should be deployed together on a production telephony agent."
+}

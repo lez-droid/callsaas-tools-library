@@ -1,0 +1,24 @@
+{
+  "type": "system",
+  "name": "transfer_to_number",
+  "description": "Transfer this live call to a human. Use this when: the caller has a safety emergency (brakes failed, vehicle on fire, stranded), the caller has asked to speak to a person, or the situation is too complex for the AI to handle. Before transferring, tell the caller: 'Let me connect you with someone from the team right now — please hold for just a moment.'",
+  "execution_mode": "immediate",
+  "disable_interruptions": true,
+  "pre_tool_speech": "auto",
+  "tool_call_sound": null,
+  "tool_call_sound_behavior": "auto",
+  "tool_error_handling_mode": "auto",
+  "dynamic_variables": { "dynamic_variable_placeholders": {} },
+  "assignments": [],
+  "system_tool_config": {
+    "transfer_config": {
+      "destination_phone": "REPLACE_WITH_ON_CALL_PHONE",
+      "context_message": "CallSaaS transfer from AI agent — caller details follow."
+    }
+  },
+  "_notes": {
+    "implementation": "In ElevenLabs UI: add a System Tool of type 'Transfer to number' (or 'End call with transfer'). Set destination number to tenant on_call_phone. The system_tool_config above is a spec placeholder — exact field names depend on EL telephony setup.",
+    "availability": "Requires ElevenLabs telephony integration. Not available on ConvAI web widget embeds.",
+    "fallback": "If telephony is not configured, use emergency_escalation (SMS) instead and tell caller the team will call them back urgently."
+  }
+}
