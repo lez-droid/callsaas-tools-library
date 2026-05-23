@@ -1,0 +1,33 @@
+{
+  "type": "webhook",
+  "name": "caller_identity_lookup",
+  "description": "Look up a returning customer by their phone number. Call this at the very start of the conversation to check if the caller is a known customer. If found, greet them by name and reference their vehicle. If not found, proceed with a standard new-customer greeting.",
+  "response_timeout_secs": 8,
+  "api_schema": {
+    "url": "https://crm.callsaas.io/api/tools/caller-identity",
+    "method": "POST",
+    "request_headers": {
+      "X-Webhook-Secret": {
+        "constant_value": "REPLACE_WITH_TENANT_WEBHOOK_SECRET"
+      }
+    },
+    "request_body_schema": {
+      "type": "object",
+      "required": ["caller_phone"],
+      "properties": {
+        "caller_phone": {
+          "type": "string",
+          "description": "The caller's phone number as provided by the telephony system",
+          "dynamic_variable": "caller_id",
+          "constant_value": ""
+        },
+        "tenant_id": {
+          "type": "string",
+          "description": "The workshop tenant identifier",
+          "dynamic_variable": "",
+          "constant_value": "REPLACE_WITH_TENANT_ID"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "parts_availability",
+  "display_name": "Parts Availability Check",
+  "status": "concept",
+  "niche": "auto",
+  "description": "Checks whether a specific part is in stock at the workshop or available for same-day/next-day order from a supplier. Useful for urgent repair calls where availability determines whether the customer books today.",
+  "requires": [
+    "Parts supplier API integration: Repco (PRONTO API), Burson Auto Parts, AutoBarn, or workshop's own inventory system",
+    "Tenant config: parts_supplier, parts_api_key, parts_account_id",
+    "Vehicle details (make/model/year) for part compatibility filtering"
+  ],
+  "el_call_timing": "Invoke when caller asks 'do you have the part' or 'can you do it today' for a specific repair",
+  "notes": "Repco PRONTO is the dominant supplier API in Australia — most independent workshops have a Repco trade account. Burson Auto Parts (Bapcor) also has an API. This tool is most valuable for urgent same-day calls: brake failure, exhaust, cooling system. If part is not in stock, agent offers to order and book for next available day."
+}

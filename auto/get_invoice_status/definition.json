@@ -1,0 +1,45 @@
+{
+  "type": "webhook",
+  "name": "get_invoice_status",
+  "description": "Look up outstanding invoices for a customer. Call this when a customer asks about a bill, wants to know what they owe, or calls to pay for completed work. Summarise verbally — do not read out every line item. Say something like: 'Your invoice is for $340 for the logbook service on the 14th — still outstanding.' Then offer to send a payment link.",
+  "response_timeout_secs": 12,
+  "api_schema": {
+    "url": "https://crm.callsaas.io/api/tools/invoice-status",
+    "method": "POST",
+    "request_headers": {
+      "X-Webhook-Secret": {
+        "constant_value": "REPLACE_WITH_TENANT_WEBHOOK_SECRET"
+      }
+    },
+    "request_body_schema": {
+      "type": "object",
+      "required": ["tenant_id"],
+      "properties": {
+        "caller_phone": {
+          "type": "string",
+          "description": "The caller's phone number to look up invoices by customer record",
+          "dynamic_variable": "caller_id",
+          "constant_value": ""
+        },
+        "rego_plate": {
+          "type": "string",
+          "description": "Vehicle registration plate if the customer mentions it and caller_phone lookup returns no results",
+          "dynamic_variable": "",
+          "constant_value": ""
+        },
+        "customer_name": {
+          "type": "string",
+          "description": "Customer name as a fallback if phone lookup returns no match",
+          "dynamic_variable": "",
+          "constant_value": ""
+        },
+        "tenant_id": {
+          "type": "string",
+          "description": "The workshop tenant identifier",
+          "dynamic_variable": "",
+          "constant_value": "REPLACE_WITH_TENANT_ID"
+        }
+      }
+    }
+  }
+}

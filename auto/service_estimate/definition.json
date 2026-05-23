@@ -1,0 +1,39 @@
+{
+  "type": "webhook",
+  "name": "service_estimate",
+  "description": "Get a price estimate for a vehicle service. Call this when the customer asks about pricing. Always present the result as a range and add that prices may vary depending on the vehicle's condition. Never commit to an exact price over the phone.",
+  "response_timeout_secs": 6,
+  "api_schema": {
+    "url": "https://crm.callsaas.io/api/tools/service-estimate",
+    "method": "POST",
+    "request_headers": {
+      "X-Webhook-Secret": {
+        "constant_value": "REPLACE_WITH_TENANT_WEBHOOK_SECRET"
+      }
+    },
+    "request_body_schema": {
+      "type": "object",
+      "required": ["service_type", "tenant_id"],
+      "properties": {
+        "service_type": {
+          "type": "string",
+          "description": "The type of service the customer is asking about. Use the customer's exact words, e.g. 'logbook service', 'brake pads', 'roadworthy certificate', 'RWC', 'pink slip', 'oil change', 'transmission flush', 'tyre rotation'.",
+          "dynamic_variable": "",
+          "constant_value": ""
+        },
+        "vehicle_class": {
+          "type": "string",
+          "description": "Vehicle class if known from rego lookup or customer statement: passenger, suv, ute, van, truck, motorcycle. Leave blank if unknown.",
+          "dynamic_variable": "",
+          "constant_value": ""
+        },
+        "tenant_id": {
+          "type": "string",
+          "description": "The workshop tenant identifier",
+          "dynamic_variable": "",
+          "constant_value": "REPLACE_WITH_TENANT_ID"
+        }
+      }
+    }
+  }
+}

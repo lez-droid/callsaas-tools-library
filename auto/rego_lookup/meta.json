@@ -1,0 +1,14 @@
+{
+  "name": "rego_lookup",
+  "display_name": "Rego Plate Lookup",
+  "status": "concept",
+  "niche": "auto",
+  "description": "Takes an Australian vehicle registration plate and returns make, model, year, colour and state of registration. Saves the customer having to spell out their vehicle details.",
+  "requires": [
+    "NEVDIS API access (National Exchange of Vehicle and Driver Information System) — requires AUSTROADS membership or a reseller such as RedBook Check, VehicleCheck.com.au, or CarHistory",
+    "Tenant config: rego_api_key, rego_api_provider",
+    "Fallback: ask caller verbally for make/model/year if API unavailable"
+  ],
+  "el_call_timing": "Invoke after caller provides their rego plate number",
+  "notes": "NEVDIS direct access requires state/territory agreements. Practical path for most workshops: integrate a paid reseller API (RedBook Check ~$0.50/lookup, CarHistory ~$0.40/lookup). Include plate and state in request for best accuracy. NSW and VIC plates are nationally unique; QLD/SA/WA may have duplicates across states."
+}

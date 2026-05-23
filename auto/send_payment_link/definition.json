@@ -1,0 +1,57 @@
+{
+  "type": "webhook",
+  "name": "send_payment_link",
+  "description": "Generate a payment link and send it to the customer via SMS. Use this for collecting a booking deposit or for customers calling to pay an outstanding balance. Always confirm the amount with the customer before calling this. Say 'I've just sent a payment link to your mobile — it'll come through in a moment.'",
+  "response_timeout_secs": 15,
+  "api_schema": {
+    "url": "https://crm.callsaas.io/api/tools/send-payment-link",
+    "method": "POST",
+    "request_headers": {
+      "X-Webhook-Secret": {
+        "constant_value": "REPLACE_WITH_TENANT_WEBHOOK_SECRET"
+      }
+    },
+    "request_body_schema": {
+      "type": "object",
+      "required": ["customer_phone", "amount_aud", "purpose", "tenant_id"],
+      "properties": {
+        "customer_phone": {
+          "type": "string",
+          "description": "Customer's Australian mobile number, e.g. 0412 345 678 or +61412345678",
+          "dynamic_variable": "",
+          "constant_value": ""
+        },
+        "customer_name": {
+          "type": "string",
+          "description": "Customer's name for the payment description",
+          "dynamic_variable": "",
+          "constant_value": ""
+        },
+        "amount_aud": {
+          "type": "number",
+          "description": "Amount in Australian dollars as a number, e.g. 50 for a $50 deposit. Do not include the dollar sign.",
+          "dynamic_variable": "",
+          "constant_value": ""
+        },
+        "purpose": {
+          "type": "string",
+          "description": "Short description for the payment, e.g. 'Booking deposit', 'Outstanding balance for logbook service', 'Brake repair balance'",
+          "dynamic_variable": "",
+          "constant_value": ""
+        },
+        "booking_ref": {
+          "type": "string",
+          "description": "Booking reference number if this payment is linked to a booking, for reconciliation",
+          "dynamic_variable": "",
+          "constant_value": ""
+        },
+        "tenant_id": {
+          "type": "string",
+          "description": "The workshop tenant identifier",
+          "dynamic_variable": "",
+          "constant_value": "REPLACE_WITH_TENANT_ID"
+        }
+      }
+    }
+  }
+}

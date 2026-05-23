@@ -1,0 +1,33 @@
+{
+  "type": "webhook",
+  "name": "workshop_capacity_check",
+  "description": "Check workshop availability before offering booking slots. Call this when a customer asks how soon they can get in, or when you want to give them an honest sense of availability before going through specific times. Use the result to guide the conversation: 'We're fairly busy Monday and Tuesday but have good availability from Wednesday — what suits you best?'",
+  "response_timeout_secs": 6,
+  "api_schema": {
+    "url": "https://crm.callsaas.io/api/tools/capacity-check",
+    "method": "POST",
+    "request_headers": {
+      "X-Webhook-Secret": {
+        "constant_value": "REPLACE_WITH_TENANT_WEBHOOK_SECRET"
+      }
+    },
+    "request_body_schema": {
+      "type": "object",
+      "required": ["tenant_id"],
+      "properties": {
+        "days_ahead": {
+          "type": "number",
+          "description": "How many calendar days ahead to check, starting from today. Use 5 for a standard working week view, 3 for urgent same-week requests.",
+          "dynamic_variable": "",
+          "constant_value": "5"
+        },
+        "tenant_id": {
+          "type": "string",
+          "description": "The workshop tenant identifier",
+          "dynamic_variable": "",
+          "constant_value": "REPLACE_WITH_TENANT_ID"
+        }
+      }
+    }
+  }
+}

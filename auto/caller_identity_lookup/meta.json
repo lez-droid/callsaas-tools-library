@@ -1,0 +1,14 @@
+{
+  "name": "caller_identity_lookup",
+  "display_name": "Caller Identity Lookup",
+  "status": "concept",
+  "niche": "auto",
+  "description": "Recognises returning customers by their phone number. Retrieves name, vehicle history and last service date from the workshop management system or CRM booking history.",
+  "requires": [
+    "Workshop management system integration (Mechanic Desk, Workshop Plus, or PB bookings history)",
+    "Tenant config: wms_api_key, wms_endpoint",
+    "Fallback: query PB bookings collection for matching caller_phone"
+  ],
+  "el_call_timing": "Invoke at conversation start before greeting — pass caller phone as dynamic variable from ElevenLabs call metadata",
+  "notes": "ElevenLabs passes caller phone via dynamic variable 'caller_id' if configured on the agent. Without WMS integration, fall back to querying PB bookings for returning customer detection."
+}

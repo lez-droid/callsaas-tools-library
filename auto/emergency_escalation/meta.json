@@ -1,0 +1,14 @@
+{
+  "name": "emergency_escalation",
+  "display_name": "Emergency Escalation Alert",
+  "status": "draft",
+  "niche": "auto",
+  "description": "Sends an urgent SMS to the workshop owner or designated emergency contact when a caller describes a safety-critical vehicle issue — brake failure, steering loss, smoke/fire, or any situation requiring immediate human intervention. Ensures no urgent call gets lost in the booking flow.",
+  "requires": [
+    "New tenant config field: emergency_contact_phone",
+    "Twilio account (already configured)",
+    "New server endpoint: POST /api/tools/emergency-escalation"
+  ],
+  "el_call_timing": "Invoke when the caller uses words like: brakes failed, steering gone, smoke, fire, leaking fuel, not safe to drive, accident, tow truck needed, stuck on the road",
+  "notes": "This is the simplest buildable tool — one Twilio SMS to a stored phone number. The agent must still be helpful and empathetic before ending the call. After sending the alert, agent should say: 'I've flagged this as urgent and the team will call you back as soon as possible. If you're in immediate danger, please call 000.' Do not offer booking slots for safety-critical situations."
+}

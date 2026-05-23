@@ -1,0 +1,51 @@
+{
+  "type": "webhook",
+  "name": "parts_availability",
+  "description": "Check if a specific part is available for a customer's vehicle repair. Call this when the customer asks if you can do a same-day or urgent repair and a specific part is involved. Speak the result naturally: 'We should be able to get that part in today' or 'That part would need to be ordered — we could have it done by Thursday.'",
+  "response_timeout_secs": 12,
+  "api_schema": {
+    "url": "https://crm.callsaas.io/api/tools/parts-availability",
+    "method": "POST",
+    "request_headers": {
+      "X-Webhook-Secret": {
+        "constant_value": "REPLACE_WITH_TENANT_WEBHOOK_SECRET"
+      }
+    },
+    "request_body_schema": {
+      "type": "object",
+      "required": ["part_description", "tenant_id"],
+      "properties": {
+        "part_description": {
+          "type": "string",
+          "description": "Description of the part needed, e.g. 'front brake pads', 'radiator hose', 'alternator', 'starter motor', 'timing belt kit'. Use the customer's words.",
+          "dynamic_variable": "",
+          "constant_value": ""
+        },
+        "vehicle_make": {
+          "type": "string",
+          "description": "Vehicle make, e.g. Toyota, Ford, Holden, Hyundai",
+          "dynamic_variable": "",
+          "constant_value": ""
+        },
+        "vehicle_model": {
+          "type": "string",
+          "description": "Vehicle model, e.g. Camry, Ranger, Commodore, i30",
+          "dynamic_variable": "",
+          "constant_value": ""
+        },
+        "vehicle_year": {
+          "type": "string",
+          "description": "Vehicle year as a 4-digit string, e.g. 2018",
+          "dynamic_variable": "",
+          "constant_value": ""
+        },
+        "tenant_id": {
+          "type": "string",
+          "description": "The workshop tenant identifier",
+          "dynamic_variable": "",
+          "constant_value": "REPLACE_WITH_TENANT_ID"
+        }
+      }
+    }
+  }
+}

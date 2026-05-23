@@ -1,0 +1,14 @@
+{
+  "name": "workshop_capacity_check",
+  "display_name": "Workshop Capacity Check",
+  "status": "draft",
+  "niche": "auto",
+  "description": "Checks how many booking slots are available for a given day or week, based on confirmed bookings in PocketBase versus the workshop's configured bay capacity. Allows the agent to say 'we're pretty full this week but have openings Thursday and Friday' rather than offering all slots blindly.",
+  "requires": [
+    "PB bookings collection (already exists)",
+    "New tenant config fields: bay_count (int), hours_open (e.g. '08:00-17:00'), slot_duration_mins (default 60)",
+    "New server endpoint: POST /api/tools/capacity-check"
+  ],
+  "el_call_timing": "Invoke when customer asks 'how soon can I get in', 'are you busy this week', or before presenting available slots",
+  "notes": "This is buildable on the current PB infrastructure without any third-party integrations. The key input needed from the workshop owner during onboarding is: number of bays, operating hours, and slot duration. Default assumption: 1 booking per bay per slot. The tool returns a simple busy/available summary per day, not individual slots — slot selection still goes through the standard booking flow."
+}

@@ -1,0 +1,14 @@
+{
+  "name": "service_estimate",
+  "display_name": "Service Price Estimate",
+  "status": "concept",
+  "niche": "auto",
+  "description": "Returns a price range for a requested service type, optionally adjusted for vehicle class. Lets the agent quote ball-park pricing without committing to a firm figure, reducing pre-booking drop-offs.",
+  "requires": [
+    "New PB collection: pricing_rules (tenant_id, service_type, vehicle_class, price_min, price_max, notes)",
+    "Tenant must populate their pricing table — Ash can seed it from onboarding data",
+    "Optional: vehicle_class derived from rego_lookup result"
+  ],
+  "el_call_timing": "Invoke when caller asks 'how much does X cost' or 'what do you charge for Y'",
+  "notes": "Pricing Rules is a planned dashboard feature. Until the UI exists, Ash seeds the table from a structured prompt during client onboarding. Price ranges (not exact) protect the workshop from being held to a phone quote. Agent must always add 'prices may vary depending on the condition of the vehicle' disclaimer."
+}

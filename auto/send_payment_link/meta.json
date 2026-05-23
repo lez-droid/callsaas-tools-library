@@ -1,0 +1,15 @@
+{
+  "name": "send_payment_link",
+  "display_name": "Send Payment Link via SMS",
+  "status": "concept",
+  "niche": "auto",
+  "description": "Generates a Stripe payment link for a specific amount and SMSes it to the customer's mobile. Useful for collecting deposits at booking time, or for outstanding balances on completed jobs where the customer is calling to arrange payment.",
+  "requires": [
+    "Stripe account with Payment Links API enabled",
+    "Tenant config: stripe_secret_key, stripe_price_id (or dynamic price creation enabled)",
+    "Twilio account: TWILIO_SID, TWILIO_AUTH_TOKEN, TWILIO_FROM",
+    "Customer mobile number (from caller or confirmed verbally)"
+  ],
+  "el_call_timing": "Invoke after confirming the amount with the customer and getting their mobile number",
+  "notes": "Two use cases: (1) booking deposit — agent confirms deposit amount, asks for mobile, sends link. (2) outstanding balance — customer calls asking how to pay, agent quotes balance from accounting system, sends link. For deposits, the amount should be pulled from tenant config (e.g. $50 standard deposit) rather than being caller-supplied to prevent manipulation."
+}

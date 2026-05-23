@@ -1,0 +1,57 @@
+{
+  "type": "webhook",
+  "name": "emergency_escalation",
+  "description": "Send an urgent alert to the workshop owner when a caller has a safety-critical vehicle issue. Call this immediately when the caller mentions: brakes failed, steering gone, smoke, fire, fuel leak, not safe to drive, stuck on the road, or needs a tow. After calling this, tell the caller: 'I've flagged this as urgent and the team will call you back as soon as possible. If you're in immediate danger, please call triple zero.' Do not try to book a regular appointment for these situations.",
+  "response_timeout_secs": 10,
+  "api_schema": {
+    "url": "https://crm.callsaas.io/api/tools/emergency-escalation",
+    "method": "POST",
+    "request_headers": {
+      "X-Webhook-Secret": {
+        "constant_value": "REPLACE_WITH_TENANT_WEBHOOK_SECRET"
+      }
+    },
+    "request_body_schema": {
+      "type": "object",
+      "required": ["caller_phone", "situation", "tenant_id"],
+      "properties": {
+        "caller_phone": {
+          "type": "string",
+          "description": "The caller's phone number so the owner can call back",
+          "dynamic_variable": "caller_id",
+          "constant_value": ""
+        },
+        "caller_name": {
+          "type": "string",
+          "description": "Caller's name if they have provided it",
+          "dynamic_variable": "",
+          "constant_value": ""
+        },
+        "situation": {
+          "type": "string",
+          "description": "Brief description of the emergency in the caller's own words, e.g. 'brakes not working at all', 'smoke coming from under the bonnet', 'steering seized'",
+          "dynamic_variable": "",
+          "constant_value": ""
+        },
+        "vehicle": {
+          "type": "string",
+          "description": "Vehicle description if known, e.g. '2018 Toyota Camry rego ABC123'",
+          "dynamic_variable": "",
+          "constant_value": ""
+        },
+        "location": {
+          "type": "string",
+          "description": "Caller's current location if they have mentioned it, e.g. 'parked on Main Street Footscray', 'on the Monash Freeway'",
+          "dynamic_variable": "",
+          "constant_value": ""
+        },
+        "tenant_id": {
+          "type": "string",
+          "description": "The workshop tenant identifier",
+          "dynamic_variable": "",
+          "constant_value": "REPLACE_WITH_TENANT_ID"
+        }
+      }
+    }
+  }
+}

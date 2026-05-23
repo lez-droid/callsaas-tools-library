@@ -1,0 +1,39 @@
+{
+  "type": "webhook",
+  "name": "rego_lookup",
+  "description": "Look up a vehicle by its Australian registration plate number. Call this when the customer provides their rego plate. Speak the result back to confirm: 'So that's a 2019 silver Toyota Camry — is that right?' Do not read out the VIN or any compliance data.",
+  "response_timeout_secs": 10,
+  "api_schema": {
+    "url": "https://crm.callsaas.io/api/tools/rego-lookup",
+    "method": "POST",
+    "request_headers": {
+      "X-Webhook-Secret": {
+        "constant_value": "REPLACE_WITH_TENANT_WEBHOOK_SECRET"
+      }
+    },
+    "request_body_schema": {
+      "type": "object",
+      "required": ["plate"],
+      "properties": {
+        "plate": {
+          "type": "string",
+          "description": "Vehicle registration plate number, e.g. ABC123 or 1ABC234. Letters and numbers only, no spaces or dashes.",
+          "dynamic_variable": "",
+          "constant_value": ""
+        },
+        "state": {
+          "type": "string",
+          "description": "Australian state or territory abbreviation: NSW, VIC, QLD, SA, WA, TAS, NT, ACT. Ask the caller if unsure.",
+          "dynamic_variable": "",
+          "constant_value": ""
+        },
+        "tenant_id": {
+          "type": "string",
+          "description": "The workshop tenant identifier",
+          "dynamic_variable": "",
+          "constant_value": "REPLACE_WITH_TENANT_ID"
+        }
+      }
+    }
+  }
+}

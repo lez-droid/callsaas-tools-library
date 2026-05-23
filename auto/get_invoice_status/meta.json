@@ -1,0 +1,14 @@
+{
+  "name": "get_invoice_status",
+  "display_name": "Invoice Status Lookup",
+  "status": "concept",
+  "niche": "auto",
+  "description": "Retrieves outstanding invoice details from the workshop's accounting system. Used when a customer calls asking about a bill, what work was done, or to arrange payment on a completed job.",
+  "requires": [
+    "Accounting system integration: Xero (most common for Australian SMBs) or MYOB AccountRight",
+    "Tenant config: accounting_provider, accounting_access_token, accounting_tenant_id",
+    "Customer lookup key: phone number or rego plate (must match what's stored in the accounting system)"
+  ],
+  "el_call_timing": "Invoke when customer says 'I got a bill', 'I want to pay my invoice', 'how much do I owe', or 'what work was done on my car'",
+  "notes": "Xero OAuth2 is the primary integration path — requires a Connected App and periodic token refresh (Xero tokens expire every 30 min, refresh tokens last 60 days). The agent should never read out full invoice line items verbally — summarise: 'Your invoice is for $340 covering a logbook service completed on the 14th.' Then offer to SMS a payment link or full invoice PDF link."
+}
